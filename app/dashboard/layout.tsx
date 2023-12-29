@@ -15,19 +15,22 @@ export default async function DashboardLayout({
 
   const {
     data: { session },
+    
   } = await supabase.auth.getSession()
   return (
-    <section className="min-h-screen 2xl:container 2xl:mx-auto ">
+    <section className="flex flex-col min-h-screen 2xl:container 2xl:mx-auto ">
       {/* Include shared UI here e.g. a header or sidebar */}
-      <nav className="flex items-center justify-between p-2 border-b-2 drop-shadow-2xl" aria-label="Main">
-        <TaskTimeTrackerLogo />
-        <nav className="flex items-center gap-2" aria-label="Controls">
-          <EditProfileButton session={session} />
-          <ModeToggle />
-        </nav>
+      <nav className="border-b-2 drop-shadow-2xl" aria-label="Main">
+        <div className="container flex items-center justify-between p-2">
+          <TaskTimeTrackerLogo />
+          <nav className="flex items-center gap-2" aria-label="Controls">
+            <EditProfileButton session={session} />
+            <ModeToggle />
+          </nav>
+        </div>
       </nav>
+      <main className="grid flex-grow">{children}</main>
 
-      {children}
     </section>
   )
 }
