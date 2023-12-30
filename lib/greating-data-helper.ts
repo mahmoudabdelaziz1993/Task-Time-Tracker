@@ -17,7 +17,7 @@ export function getGreeting(): {greeting: { message: string; icon: string; }; fo
         greeting = evening;
     }
 
-    const formattedDate = date.toLocaleDateString('en-US', { year: '2-digit', month: 'short', day: 'numeric' });
+    const formattedDate = date.toLocaleDateString('en-US', { dateStyle: 'medium' });
 
     return {
         greeting,

@@ -13,7 +13,7 @@ import { Database } from '@/supabase'
 
 export type Props = {
   session: Session | null
-  values?: Database['public']['Tables']['profiles']['Update']
+  values: Database['public']['Tables']['profiles']['Row']
 }
 
 export default function UpdateProfile({ session, values }: Props) {

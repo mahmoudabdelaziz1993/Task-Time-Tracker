@@ -1,4 +1,3 @@
-'use client'
 
 import { Button } from "@/components/ui/button"
 
@@ -11,35 +10,14 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import UpdateProfile from "./update-profile-form"
-import { Session } from "@supabase/supabase-js"
-import { useCallback, useEffect, useState } from "react"
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Database } from "@/supabase"
-import { FetchUserProfile } from "@/lib/fetch-data"
+import { FetchUserProfile, fetchSessionData } from "@/lib/supabase/fetch-data"
 
-type Props = {
-  session: Session | null;
-}
-export function EditProfileButton({ session }: Props) {
-  const [profile, setProfile] = useState<Database['public']['Tables']['profiles']['Update']>()
-  const getProfile = useCallback(async () => {
-    try {
-      const { data, error, status } = await FetchUserProfile()
-      if (error && status !== 406) {
-        throw error
-      }
-      if (data) {
-        setProfile(data)
-      }
-    } catch (error) {
-      alert('Error loading user data!')
-    }
-  }, [])
 
-  useEffect(() => {
-    getProfile()
-  }, [getProfile])
+export async function EditProfileButton() {
+
+  const { data: session, error, status } = await fetchSessionData()
+  const { data: profile, error: profileError, status: profileStatus } = await FetchUserProfile()
 
   return (
     <Sheet>
@@ -58,7 +36,7 @@ export function EditProfileButton({ session }: Props) {
             Make changes to your profile here. Click save when you&apos;re done.
           </SheetDescription>
         </SheetHeader>
-        <UpdateProfile session={session} values={profile} />
+        {profile && <UpdateProfile session={session} values={profile} />}
       </SheetContent>
     </Sheet>
   )
