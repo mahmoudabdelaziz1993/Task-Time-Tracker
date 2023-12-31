@@ -1,6 +1,6 @@
 "use server"
 
-import { supabase } from "./Supabase-client-instance"
+import { supabase } from "@/lib/supabase/Supabase-client-instance"
 import { fetchSessionData } from "./fetch-data"
 
 export const createUserBoards = async ( title: string, description: string) => {
