@@ -1,3 +1,4 @@
+import AvatarDropdown from "@/components/avatar-dropdwon";
 import { EditProfileButton } from "@/components/edit-profile";
 import TaskTimeTrackerLogo from "@/components/t3-logo"
 import { ModeToggle } from "@/components/theme-toggle"
@@ -18,7 +19,7 @@ export default async function DashboardLayout({
         <div className="container flex items-center justify-between p-6">
           <TaskTimeTrackerLogo />
           <nav className="flex items-center gap-2" aria-label="Controls">
-            <EditProfileButton />
+           <AvatarDropdown />
             <ModeToggle />
           </nav>
         </div>

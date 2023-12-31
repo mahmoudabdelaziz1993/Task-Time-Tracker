@@ -22,11 +22,9 @@ export async function EditProfileButton() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="p-4 rounded-full">
-          <Avatar className="w-6 h-6">
-            <AvatarImage src={profile?.avatar_url ?? 'https://api.dicebear.com/7.x/micah/svg'} />
-            <AvatarFallback>{profile?.username?.slice(0, 2).toUpperCase()}</AvatarFallback>
-          </Avatar>
+        <Button >
+        Edit profile
+        
         </Button>
       </SheetTrigger>
       <SheetContent>
