@@ -1,6 +1,6 @@
 "use server"
 
-import { supabase } from "@/lib/supabase/Supabase-client-instance"
+import { supabase } from "./Supabase-client-instance"
 
 // function to fetch session data from supabase 
 // and return data and error 
