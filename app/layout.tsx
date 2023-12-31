@@ -2,8 +2,9 @@ import type { Metadata } from 'next'
 import { Titillium_Web } from 'next/font/google'
 import '@/styles/globals.css'
 import { cn } from '@/lib/utils'
+import { ThemeProvider } from "@/components/theme-provider"
 
-const genos = Titillium_Web({ subsets: ['latin',"latin-ext"]  , variable: "--font-genos" , weight: "400"  })
+const genos = Titillium_Web({ subsets: ['latin', "latin-ext"], variable: "--font-genos", weight: "400" })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,11 +17,20 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={cn(
-          "min-h-screen bg-background font-genos antialiased",
-          genos.variable
-        )}>{children}</body>
+        "min-h-screen bg-background font-genos antialiased",
+        genos.variable
+      )}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }
